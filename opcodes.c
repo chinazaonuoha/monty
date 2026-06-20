@@ -67,3 +67,24 @@ printf("%d\n", current->n);
 current = current->next;
 }
 }
+
+
+/**
+ * f_pint - Prints the value at the top of the stack.
+ * @head: Double pointer to stack head
+ * @line: Line number index
+ * @con: String buffer to clean on failure
+ * @f: File stream descriptor
+ */
+void f_pint(stack_t **head, unsigned int line, char *con, FILE *f)
+{
+if (!head || !*head)
+{
+fprintf(stderr, "L%d: can't pint, stack empty\n", line);
+free_stack(*head);
+free(con);
+fclose(f);
+exit(EXIT_FAILURE);
+}
+printf("%d\n", (*head)->n);
+}

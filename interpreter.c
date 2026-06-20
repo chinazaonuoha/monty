@@ -8,8 +8,7 @@
  * @file: Pointer to the open script file stream
  * Return: 0 if successfully resolved or empty
  */
-int execute(char *content, stack_t **stack,
-unsigned int line_number, FILE *file)
+int execute(char *content, stack_t **stack, unsigned int line_number, FILE *file)
 {
 instruction_t opst[] = {
 {"pall", f_pall},
@@ -18,15 +17,20 @@ instruction_t opst[] = {
 unsigned int i = 0;
 char *op, *arg;
 
-op = strtok(content, " \n\t");
+op = strtok(content, " \n\t\r");
 if (!op || op[0] == '#')
 return (0);
 
-arg = strtok(NULL, " \n\t");
+arg = strtok(NULL, " \n\t\r");
 
 if (strcmp(op, "push") == 0)
 {
 run_push(stack, arg, line_number, content, file);
+return (0);
+}
+if (strcmp(op, "pint") == 0)
+{
+f_pint(stack, line_number, content, file);
 return (0);
 }
 
