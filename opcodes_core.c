@@ -76,7 +76,8 @@ current = current->next;
  * @con: String buffer to clean on failure
  * @f: File stream descriptor
  */
-void f_pint(stack_t **head, char *arg, unsigned int line, char *con, FILE *f)
+void f_pint(stack_t **head, char *arg, unsigned int line,
+char *con, FILE *f)
 {
 (void)arg; /* Suppress unused parameter warning safely */
 

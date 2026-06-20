@@ -65,7 +65,8 @@ temp_val = (*head)->n;
  * @con: String buffer to clean on failure
  * @f: File stream descriptor
  */
-void f_add(stack_t **head, char *arg, unsigned int line, char *con, FILE *f)
+void f_add(stack_t **head, char *arg,
+unsigned int line, char *con, FILE *f)
 {
 stack_t *temp;
 
