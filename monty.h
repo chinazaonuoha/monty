@@ -40,5 +40,7 @@ void run_push(stack_t **head, char *arg,
 unsigned int line, char *con, FILE *f);
 
 void f_pint(stack_t **head, unsigned int line, char *con, FILE *f);
+
+void f_pop(stack_t **head, unsigned int line, char *con, FILE *f);
 #endif
 

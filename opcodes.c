@@ -68,6 +68,31 @@ current = current->next;
 }
 }
 
+/**
+ * f_pop - Removes the top element of the stack.
+ * @head: Double pointer to stack head
+ * @line: Line number index
+ * @con: String buffer to clean on failure
+ * @f: File stream descriptor
+ */
+void f_pop(stack_t **head, unsigned int line, char *con, FILE *f)
+{
+stack_t *temp;
+
+if (!head || !*head)
+{
+fprintf(stderr, "L%d: can't pop an empty stack\n", line);
+free_stack(*head);
+free(con);
+fclose(f);
+exit(EXIT_FAILURE);
+}
+temp = *head;
+*head = temp->next;
+if (*head)
+(*head)->prev = NULL;
+free(temp);
+}
 
 /**
  * f_pint - Prints the value at the top of the stack.

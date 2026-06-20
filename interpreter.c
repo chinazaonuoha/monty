@@ -35,6 +35,12 @@ f_pint(stack, line_number, content, file);
 return (0);
 }
 
+if (strcmp(op, "pop") == 0)
+{
+f_pop(stack, line_number, content, file);
+return (0);
+}
+
 while (opst[i].opcode && op)
 {
 if (strcmp(op, opst[i].opcode) == 0)
