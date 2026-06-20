@@ -94,6 +94,32 @@ if (*head)
 free(temp);
 }
 
+
+/**
+ * f_swap - Swaps the top two elements of the stack.
+ * @head: Double pointer to stack head
+ * @line: Line number index
+ * @con: String buffer to clean on failure
+ * @f: File stream descriptor
+ */
+void f_swap(stack_t **head, unsigned int line, char *con, FILE *f)
+{
+int temp_val;
+
+if (!head || !*head || !(*head)->next)
+{
+fprintf(stderr, "L%d: can't swap, stack too short\n", line);
+free_stack(*head);
+free(con);
+fclose(f);
+exit(EXIT_FAILURE);
+}
+
+temp_val = (*head)->n;
+(*head)->n = (*head)->next->n;
+(*head)->next->n = temp_val;
+}
+
 /**
  * f_pint - Prints the value at the top of the stack.
  * @head: Double pointer to stack head

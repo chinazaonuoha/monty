@@ -42,5 +42,7 @@ unsigned int line, char *con, FILE *f);
 void f_pint(stack_t **head, unsigned int line, char *con, FILE *f);
 
 void f_pop(stack_t **head, unsigned int line, char *con, FILE *f);
+
+void f_swap(stack_t **head, unsigned int line, char *con, FILE *f);
 #endif
 
