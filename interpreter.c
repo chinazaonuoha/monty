@@ -28,7 +28,7 @@ return (1);
 }
 
 /**
- * execute - Matches tokenized lines against the opcode execution matrix.
+ * execute - Matches tokenized lines against the optimized jump table.
  * @content: The text line read from the script file
  * @stack: Pointer to the top of the stack
  * @line_number: Line tracking index
@@ -38,6 +38,15 @@ return (1);
 int execute(char *content, stack_t **stack,
 unsigned int line_number, FILE *file)
 {
+op_handler_t matrix[] = {
+{"push", run_push},
+{"pint", f_pint},
+{"pop", f_pop},
+{"swap", f_swap},
+{"add", f_add},
+{NULL, NULL}
+};
+int i = 0;
 char *op, *arg;
 
 op = strtok(content, " \n\t\r");
@@ -46,26 +55,16 @@ return (0);
 
 arg = strtok(NULL, " \n\t\r");
 
-if (strcmp(op, "push") == 0)
+while (matrix[i].opcode)
 {
-run_push(stack, arg, line_number, content, file);
+if (strcmp(op, matrix[i].opcode) == 0)
+{
+matrix[i].f(stack, arg, line_number, content, file);
 return (0);
 }
-if (strcmp(op, "pint") == 0)
-{
-f_pint(stack, line_number, content, file);
-return (0);
+i++;
 }
-if (strcmp(op, "pop") == 0)
-{
-f_pop(stack, line_number, content, file);
-return (0);
-}
-if (strcmp(op, "swap") == 0)
-{
-f_swap(stack, line_number, content, file);
-return (0);
-}
+
 if (execute_extended(op, stack, line_number) == 0)
 return (0);
 
