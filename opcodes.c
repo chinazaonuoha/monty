@@ -1,43 +1,46 @@
 #include "monty.h"
 
 /**
- * f_push - Pushes an element to the stack with robust input checking.
+ * run_push - Validates and executes a push action locally.
  * @head: Double pointer to stack head
- * @line_number: Line tracking index
+ * @arg: String argument containing integer
+ * @line: Line number index
+ * @con: String buffer to clean on failure
+ * @f: File stream descriptor
  */
-void f_push(stack_t **head, unsigned int line_number)
+void run_push(stack_t **head, char *arg, unsigned int line, char *con, FILE *f)
 {
 int n, j = 0, flag = 0;
 stack_t *new_node;
 
-if (!bus.arg)
+if (!arg)
 flag = 1;
 else
 {
-if (bus.arg[0] == '-')
+if (arg[0] == '-')
 j++;
-for (; bus.arg[j] != '\0'; j++)
+for (; arg[j] != '\0'; j++)
 {
-if (!isdigit(bus.arg[j]))
+if (!isdigit(arg[j]))
 flag = 1;
 }
 }
 if (flag == 1)
 {
-fprintf(stderr, "L%d: usage: push integer\n", line_number);
+fprintf(stderr, "L%d: usage: push integer\n", line);
 free_stack(*head);
-free(bus.content);
-fclose(bus.file);
+free(con);
+fclose(f);
 exit(EXIT_FAILURE);
 }
-n = atoi(bus.arg);
+n = atoi(arg);
 new_node = malloc(sizeof(stack_t));
 if (!new_node)
 {
 fprintf(stderr, "Error: malloc failed\n");
 free_stack(*head);
-free(bus.content);
-fclose(bus.file);
+free(con);
+fclose(f);
 exit(EXIT_FAILURE);
 }
 new_node->n = n;

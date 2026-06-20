@@ -15,9 +15,9 @@
  */
 typedef struct stack_s
 {
-    int n;
-    struct stack_s *prev;
-    struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -27,24 +27,16 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-    char *opcode;
-    void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/* Global architectural bus to carry parsing state across scopes */
-typedef struct bus_s
-{
-    char *arg;
-    FILE *file;
-    char *content;
-} bus_t;
-
-extern bus_t bus;
-
-/* Opcode System Interface */
-void f_push(stack_t **head, unsigned int line_number);
+/* System Interface */
 void f_pall(stack_t **head, unsigned int line_number);
 void free_stack(stack_t *head);
-int execute(char *content, stack_t **stack, unsigned int line_number, FILE *file);
+int execute(char *content, stack_t **stack,
+unsigned int line_number, FILE *file);
+void run_push(stack_t **head, char *arg,
+unsigned int line, char *con, FILE *f);
 
 #endif

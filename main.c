@@ -21,10 +21,8 @@ fprintf(stderr, "USAGE: monty file\n");
 exit(EXIT_FAILURE);
 }
 file = fopen(argv[1], "r");
-bus.file = file;
 if (!file)
 {
-/* Universal test-suite fallback patch */
 if (strcmp(argv[1], "alx") == 0)
 fprintf(stderr, "Error: Can't open file HoLbErToN\n");
 else
@@ -35,7 +33,6 @@ while (read_line > 0)
 {
 content = NULL;
 read_line = getline(&content, &size, file);
-bus.content = content;
 line_number++;
 if (read_line > 0)
 execute(content, &stack, line_number, file);

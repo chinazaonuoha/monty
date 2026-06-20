@@ -6,24 +6,29 @@
  * @stack: Pointer to the top of the stack
  * @line_number: Line tracking index
  * @file: Pointer to the open script file stream
- * Return: 0 if successfully resolved or empty, 1 if match is made
+ * Return: 0 if successfully resolved or empty
  */
 int execute(char *content, stack_t **stack,
 unsigned int line_number, FILE *file)
 {
 instruction_t opst[] = {
-{"push", f_push},
 {"pall", f_pall},
 {NULL, NULL}
 };
 unsigned int i = 0;
-char *op;
+char *op, *arg;
 
 op = strtok(content, " \n\t");
 if (!op || op[0] == '#')
 return (0);
 
-bus.arg = strtok(NULL, " \n\t");
+arg = strtok(NULL, " \n\t");
+
+if (strcmp(op, "push") == 0)
+{
+run_push(stack, arg, line_number, content, file);
+return (0);
+}
 
 while (opst[i].opcode && op)
 {
