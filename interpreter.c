@@ -8,7 +8,8 @@
  * @file: Pointer to the open script file stream
  * Return: 0 if successfully resolved or empty, 1 if match is made
  */
-int execute(char *content, stack_t **stack, unsigned int line_number, FILE *file)
+int execute(char *content, stack_t **stack,
+unsigned int line_number, FILE *file)
 {
 instruction_t opst[] = {
 {"push", f_push},

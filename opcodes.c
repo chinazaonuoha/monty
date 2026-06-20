@@ -11,20 +11,16 @@ int n, j = 0, flag = 0;
 stack_t *new_node;
 
 if (!bus.arg)
+flag = 1;
+else
 {
-fprintf(stderr, "L%d: usage: push integer\n", line_number);
-free_stack(*head);
-free(bus.content);
-fclose(bus.file);
-exit(EXIT_FAILURE);
-}
-
 if (bus.arg[0] == '-')
 j++;
 for (; bus.arg[j] != '\0'; j++)
 {
 if (!isdigit(bus.arg[j]))
 flag = 1;
+}
 }
 if (flag == 1)
 {
@@ -34,7 +30,6 @@ free(bus.content);
 fclose(bus.file);
 exit(EXIT_FAILURE);
 }
-
 n = atoi(bus.arg);
 new_node = malloc(sizeof(stack_t));
 if (!new_node)
@@ -45,7 +40,6 @@ free(bus.content);
 fclose(bus.file);
 exit(EXIT_FAILURE);
 }
-
 new_node->n = n;
 new_node->prev = NULL;
 new_node->next = *head;
@@ -68,21 +62,5 @@ while (current)
 {
 printf("%d\n", current->n);
 current = current->next;
-}
-}
-
-/**
- * free_stack - Housekeeping helper to clean up nodes.
- * @head: Stack head
- */
-void free_stack(stack_t *head)
-{
-stack_t *tmp;
-
-while (head)
-{
-tmp = head->next;
-free(head);
-head = tmp;
 }
 }
