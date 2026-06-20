@@ -91,3 +91,20 @@ exit(EXIT_FAILURE);
 }
 printf("%d\n", (*head)->n);
 }
+
+/**
+ * f_nop - Does absolutely nothing.
+ * @head: Double pointer to the top of the stack (unused)
+ * @arg: String argument from the line token (unused)
+ * @line: Current execution line tracking index (unused)
+ * @con: String buffer containing raw line content (unused)
+ * @f: File stream descriptor to the script source (unused)
+ */
+void f_nop(stack_t **head, char *arg, unsigned int line, char *con, FILE *f)
+{
+(void)head;
+(void)arg;
+(void)line;
+(void)con;
+(void)f;
+}

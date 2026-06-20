@@ -44,6 +44,7 @@ op_handler_t matrix[] = {
 {"pop", f_pop},
 {"swap", f_swap},
 {"add", f_add},
+{"nop", f_nop},
 {NULL, NULL}
 };
 int i = 0;

@@ -61,4 +61,6 @@ void f_swap(stack_t **head, char *arg, unsigned int line, char *con, FILE *f);
 void f_add(stack_t **head, char *arg, unsigned int line, char *con, FILE *f);
 void f_pall(stack_t **head, unsigned int line_number);
 
+void f_nop(stack_t **head, char *arg, unsigned int line, char *con, FILE *f);
+
 #endif
