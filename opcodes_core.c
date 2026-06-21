@@ -108,3 +108,39 @@ void f_nop(stack_t **head, char *arg, unsigned int line, char *con, FILE *f)
 (void)con;
 (void)f;
 }
+
+
+/**
+ * f_pchar - Prints the char at the top of the stack.
+ * @head: Double pointer to the top of the stack
+ * @arg: String argument from line token (unused)
+ * @line: Current execution line tracking index
+ * @con: String buffer containing raw line content
+ * @f: File stream descriptor to the script source
+ */
+void f_pchar(stack_t **head, char *arg, unsigned int line, char *con, FILE *f)
+{
+(void)arg;
+
+/* Guard 1: Structural emptiness validation */
+if (!head || !*head)
+{
+fprintf(stderr, "L%d: can't pchar, stack empty\n", line);
+free_stack(*head);
+free(con);
+fclose(f);
+exit(EXIT_FAILURE);
+}
+
+/* Guard 2: ASCII boundary value validation */
+if ((*head)->n < 0 || (*head)->n > 127)
+{
+fprintf(stderr, "L%d: can't pchar, value out of range\n", line);
+free_stack(*head);
+free(con);
+fclose(f);
+exit(EXIT_FAILURE);
+}
+
+printf("%c\n", (*head)->n);
+}

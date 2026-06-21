@@ -52,7 +52,6 @@ unsigned int line_number, FILE *file);
 int execute_extended(char *op, stack_t **stack, unsigned int line);
 void free_stack(stack_t *head);
 
-/* Opcode Function Prototypes matching our context signature */
 void run_push(stack_t **head, char *arg,
 unsigned int line, char *con, FILE *f);
 void f_pint(stack_t **head, char *arg, unsigned int line, char *con, FILE *f);
@@ -62,5 +61,7 @@ void f_add(stack_t **head, char *arg, unsigned int line, char *con, FILE *f);
 void f_pall(stack_t **head, unsigned int line_number);
 
 void f_nop(stack_t **head, char *arg, unsigned int line, char *con, FILE *f);
+
+void f_pchar(stack_t **head, char *arg, unsigned int line, char *con, FILE *f);
 
 #endif
