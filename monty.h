@@ -64,4 +64,8 @@ void f_nop(stack_t **head, char *arg, unsigned int line, char *con, FILE *f);
 
 void f_pchar(stack_t **head, char *arg, unsigned int line, char *con, FILE *f);
 
+void f_sub(stack_t **head, char *arg, unsigned int line, char *con, FILE *f);
+void f_div(stack_t **head, char *arg, unsigned int line, char *con, FILE *f);
+void f_mul(stack_t **head, char *arg, unsigned int line, char *con, FILE *f);
+void f_mod(stack_t **head, char *arg, unsigned int line, char *con, FILE *f);
 #endif

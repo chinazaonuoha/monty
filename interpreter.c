@@ -39,14 +39,10 @@ int execute(char *content, stack_t **stack,
 unsigned int line_number, FILE *file)
 {
 op_handler_t matrix[] = {
-{"push", run_push},
-{"pint", f_pint},
-{"pop", f_pop},
-{"swap", f_swap},
-{"add", f_add},
-{"nop", f_nop},
-{"pchar", f_pchar},
-{NULL, NULL}
+{"push", run_push}, {"pint", f_pint}, {"pop", f_pop},
+{"swap", f_swap}, {"add", f_add}, {"nop", f_nop},
+{"pchar", f_pchar}, {"sub", f_sub}, {"div", f_div},
+{"mul", f_mul}, {"mod", f_mod}, {NULL, NULL}
 };
 int i = 0;
 char *op, *arg;
